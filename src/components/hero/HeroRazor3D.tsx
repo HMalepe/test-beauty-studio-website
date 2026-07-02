@@ -5,6 +5,8 @@ import dynamic from "next/dynamic";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import type { Group } from "three";
+import { usePrefersReducedMotion } from "@/lib/usePrefersReducedMotion";
+import { useScrollTriggerRefresh } from "@/lib/useScrollTriggerRefresh";
 import { HeroCanvasFallback } from "./HeroCanvasFallback";
 
 const RazorCanvas = dynamic(
@@ -22,11 +24,22 @@ export function HeroRazor3D() {
   const scrollGroupRef = useRef<Group>(null);
   const scrollProgressRef = useRef(0);
   const [meshReady, setMeshReady] = useState(false);
+  const reducedMotion = usePrefersReducedMotion();
+
+  useScrollTriggerRefresh([meshReady]);
 
   useEffect(() => {
     const pinEl = pinRef.current;
     const mesh = scrollGroupRef.current;
     if (!pinEl || !mesh || !meshReady) return;
+
+    if (reducedMotion) {
+      mesh.rotation.set(0, 95 * DEG, 0);
+      mesh.scale.set(1, 1, 1);
+      mesh.position.set(0, 0, 0);
+      scrollProgressRef.current = 1;
+      return;
+    }
 
     mesh.rotation.set(0, -25 * DEG, 0);
     mesh.scale.set(0.8, 0.8, 0.8);
@@ -77,7 +90,7 @@ export function HeroRazor3D() {
     ScrollTrigger.refresh();
 
     return () => ctx.revert();
-  }, [meshReady]);
+  }, [meshReady, reducedMotion]);
 
   return (
     <section

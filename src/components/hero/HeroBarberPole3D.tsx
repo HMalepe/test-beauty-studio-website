@@ -5,6 +5,8 @@ import dynamic from "next/dynamic";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import type { Group } from "three";
+import { usePrefersReducedMotion } from "@/lib/usePrefersReducedMotion";
+import { useScrollTriggerRefresh } from "@/lib/useScrollTriggerRefresh";
 import { HeroCanvasFallback } from "./HeroCanvasFallback";
 
 const BarberPoleCanvas = dynamic(
@@ -22,11 +24,21 @@ export function HeroBarberPole3D() {
   const scrollGroupRef = useRef<Group>(null);
   const stripeSpeedRef = useRef(0.3);
   const [meshReady, setMeshReady] = useState(false);
+  const reducedMotion = usePrefersReducedMotion();
+
+  useScrollTriggerRefresh([meshReady]);
 
   useEffect(() => {
     const pinEl = pinRef.current;
     const mesh = scrollGroupRef.current;
     if (!pinEl || !mesh || !meshReady) return;
+
+    if (reducedMotion) {
+      mesh.scale.set(1.05, 1.05, 1.05);
+      mesh.rotation.set(0, 0, 8 * DEG);
+      stripeSpeedRef.current = 0.6;
+      return;
+    }
 
     mesh.scale.set(0.9, 0.9, 0.9);
     mesh.rotation.set(0, 0, 0);
@@ -70,7 +82,7 @@ export function HeroBarberPole3D() {
     ScrollTrigger.refresh();
 
     return () => ctx.revert();
-  }, [meshReady]);
+  }, [meshReady, reducedMotion]);
 
   return (
     <section

@@ -4,14 +4,14 @@ import { Providers } from "./providers";
 import "./globals.css";
 
 export const metadata: Metadata = {
-  title: "MarineFlow | High-Performance Marine Pumping Solutions",
+  title: "MarineFlow | Barbershop & Grooming · Cape Town",
   description:
-    "MarineFlow delivers engineered marine pumping solutions built for demanding environments. Trusted performance for vessels, offshore, and industrial marine applications across South Africa.",
+    "MarineFlow — traditional barbershop craft on marineflow.co.za. Cuts, straight-razor shaves, and unhurried grooming in Cape Town.",
   metadataBase: new URL("https://marineflow.co.za"),
   openGraph: {
-    title: "MarineFlow | High-Performance Marine Pumping Solutions",
+    title: "MarineFlow | Barbershop & Grooming · Cape Town",
     description:
-      "Engineered marine pumping solutions built for demanding environments.",
+      "Traditional barbershop craft. Cuts, shaves, and the ritual you deserve.",
     url: "https://marineflow.co.za",
     siteName: "MarineFlow",
     locale: "en_ZA",

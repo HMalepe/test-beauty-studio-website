@@ -30,6 +30,17 @@ export function Providers({ children }: ProvidersProps) {
   const [lenisInstance, setLenisInstance] = useState<Lenis | null>(null);
 
   useEffect(() => {
+    const reducedMotion = window.matchMedia(
+      "(prefers-reduced-motion: reduce)",
+    ).matches;
+
+    const onRefresh = () => lenisRef.current?.resize();
+
+    if (reducedMotion) {
+      ScrollTrigger.refresh();
+      return;
+    }
+
     const lenis = new Lenis({
       lerp: 0.08,
       duration: 1.2,
@@ -39,8 +50,6 @@ export function Providers({ children }: ProvidersProps) {
 
     lenisRef.current = lenis;
     setLenisInstance(lenis);
-
-    const onRefresh = () => lenis.resize();
 
     lenis.on("scroll", ScrollTrigger.update);
 
@@ -63,7 +72,6 @@ export function Providers({ children }: ProvidersProps) {
     });
 
     ScrollTrigger.addEventListener("refresh", onRefresh);
-    ScrollTrigger.refresh();
 
     const tickerCallback = (time: number) => {
       lenis.raf(time * 1000);
@@ -71,6 +79,8 @@ export function Providers({ children }: ProvidersProps) {
 
     gsap.ticker.add(tickerCallback);
     gsap.ticker.lagSmoothing(0);
+
+    ScrollTrigger.refresh();
 
     return () => {
       gsap.ticker.remove(tickerCallback);

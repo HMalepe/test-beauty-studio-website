@@ -16,6 +16,10 @@
     height: auto;
   }
 
+  html.lenis:not(.lenis-smooth) {
+    scroll-behavior: auto;
+  }
+
   .lenis.lenis-smooth {
     scroll-behavior: auto !important;
   }

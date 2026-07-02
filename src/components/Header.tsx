@@ -1,15 +1,20 @@
+"use client";
+
+import { useState } from "react";
+
 const navLinks = [
-  { label: "Products", href: "#products" },
-  { label: "About", href: "#about" },
-  { label: "Markets", href: "#markets" },
+  { label: "Gallery", href: "#gallery" },
+  { label: "Services", href: "#services" },
   { label: "Contact", href: "#contact" },
 ];
 
 export function Header() {
+  const [menuOpen, setMenuOpen] = useState(false);
+
   return (
     <header className="fixed top-0 left-0 right-0 z-50 border-b border-cream/5 bg-base/80 backdrop-blur-md">
       <div className="mx-auto flex h-16 max-w-7xl items-center justify-between px-6 lg:h-20 lg:px-8">
-        <a href="#" className="group flex items-center gap-2.5">
+        <a href="#hero" className="group flex items-center gap-2.5">
           <span className="flex h-9 w-9 items-center justify-center rounded-lg bg-accent-muted ring-1 ring-accent/30 transition group-hover:ring-accent/50">
             <svg
               viewBox="0 0 24 24"
@@ -18,7 +23,7 @@ export function Header() {
               aria-hidden="true"
             >
               <path
-                d="M3 15c2.5-1 5-1.5 9-1.5s6.5.5 9 1.5M3 12c2.5-1 5-1.5 9-1.5s6.5.5 9 1.5M3 9c2.5-1 5-1.5 9-1.5s6.5.5 9 1.5"
+                d="M12 3v18M8 7c0-2 1.5-3 4-3s4 1 4 3M6 21h12"
                 stroke="currentColor"
                 strokeWidth="1.5"
                 strokeLinecap="round"
@@ -47,13 +52,15 @@ export function Header() {
             href="#contact"
             className="hidden rounded-full bg-accent px-5 py-2 font-grotesk text-sm font-semibold text-cream transition hover:bg-accent-hover sm:inline-flex"
           >
-            Get in Touch
+            Book Now
           </a>
 
           <button
             type="button"
             className="inline-flex h-10 w-10 items-center justify-center rounded-lg text-cream/70 transition hover:bg-cream/5 md:hidden"
-            aria-label="Open menu"
+            aria-label={menuOpen ? "Close menu" : "Open menu"}
+            aria-expanded={menuOpen}
+            onClick={() => setMenuOpen((open) => !open)}
           >
             <svg
               viewBox="0 0 24 24"
@@ -61,16 +68,55 @@ export function Header() {
               className="h-6 w-6"
               aria-hidden="true"
             >
-              <path
-                d="M4 7h16M4 12h16M4 17h16"
-                stroke="currentColor"
-                strokeWidth="1.5"
-                strokeLinecap="round"
-              />
+              {menuOpen ? (
+                <path
+                  d="M6 6l12 12M18 6L6 18"
+                  stroke="currentColor"
+                  strokeWidth="1.5"
+                  strokeLinecap="round"
+                />
+              ) : (
+                <path
+                  d="M4 7h16M4 12h16M4 17h16"
+                  stroke="currentColor"
+                  strokeWidth="1.5"
+                  strokeLinecap="round"
+                />
+              )}
             </svg>
           </button>
         </div>
       </div>
+
+      {menuOpen && (
+        <nav
+          className="border-t border-cream/5 bg-base/95 px-6 py-4 md:hidden"
+          aria-label="Mobile"
+        >
+          <ul className="flex flex-col gap-3">
+            {navLinks.map((link) => (
+              <li key={link.href}>
+                <a
+                  href={link.href}
+                  className="block font-grotesk text-base font-medium text-cream/80 py-1"
+                  onClick={() => setMenuOpen(false)}
+                >
+                  {link.label}
+                </a>
+              </li>
+            ))}
+            <li>
+              <a
+                href="#contact"
+                className="mt-2 inline-flex rounded-full bg-accent px-5 py-2 font-grotesk text-sm font-semibold text-cream"
+                onClick={() => setMenuOpen(false)}
+              >
+                Book Now
+              </a>
+            </li>
+          </ul>
+        </nav>
+      )}
     </header>
   );
 }
