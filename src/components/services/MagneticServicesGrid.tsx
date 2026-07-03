@@ -8,6 +8,7 @@ import {
   type MouseEvent,
 } from "react";
 import { useReducedMotion } from "framer-motion";
+import { ScrambleReveal } from "@/components/ScrambleReveal";
 import { MagneticServiceCard } from "./MagneticServiceCard";
 import {
   CARD_GAP,
@@ -195,12 +196,12 @@ export function MagneticServicesGrid() {
           <p className="mb-3 font-grotesk text-xs uppercase tracking-[0.2em] text-cream/50">
             What we offer
           </p>
-          <h2
+          <ScrambleReveal
+            as="h2"
             id="services-heading"
+            text="Services"
             className="font-serif text-3xl font-semibold text-cream sm:text-4xl lg:text-5xl"
-          >
-            Services
-          </h2>
+          />
           <p className="mx-auto mt-4 max-w-md font-grotesk text-cream/55">
             {hoverCapable
               ? "Move near a card — the grid responds."

@@ -3,6 +3,7 @@
 import { useRef } from "react";
 import { useReducedMotion, useScroll, useTransform } from "framer-motion";
 import { useScrollTriggerRefresh } from "@/lib/useScrollTriggerRefresh";
+import { ScrambleReveal } from "@/components/ScrambleReveal";
 import { PolaroidCard } from "./PolaroidCard";
 import {
   FAN_OUT_VH,
@@ -66,11 +67,17 @@ export function PolaroidCascade() {
               </p>
               <h2
                 id="polaroid-heading"
+                aria-label="Moments from the chair"
                 className="font-serif text-3xl font-semibold leading-tight text-cream sm:text-4xl lg:text-5xl"
               >
-                Moments from
+                <ScrambleReveal as="span" nested text="Moments from" />
                 <br />
-                <span className="text-accent">the chair</span>
+                <ScrambleReveal
+                  as="span"
+                  nested
+                  text="the chair"
+                  className="text-accent"
+                />
               </h2>
               {!reducedMotion && (
                 <p className="mt-4 max-w-xs font-grotesk text-sm text-cream/55">

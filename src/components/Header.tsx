@@ -30,8 +30,11 @@ export function Header() {
               />
             </svg>
           </span>
-          <span className="font-serif text-lg font-semibold tracking-tight text-cream">
-            Marine<span className="text-accent">Flow</span>
+          <span
+            className="font-serif text-lg font-semibold tracking-tight text-cream"
+            title="TEST BEAUTY STUDIO WEBSITE"
+          >
+            Test <span className="text-accent">Beauty</span> Studio
           </span>
         </a>
 

@@ -4,16 +4,16 @@ import { Providers } from "./providers";
 import "./globals.css";
 
 export const metadata: Metadata = {
-  title: "MarineFlow | Barbershop & Grooming · Cape Town",
+  title: "TEST BEAUTY STUDIO WEBSITE",
   description:
-    "MarineFlow — traditional barbershop craft on marineflow.co.za. Cuts, straight-razor shaves, and unhurried grooming in Cape Town.",
+    "Test beauty studio website — editorial grooming experience with 3D hero, polaroid gallery, magnetic services, and parallax booking CTA.",
   metadataBase: new URL("https://marineflow.co.za"),
   openGraph: {
-    title: "MarineFlow | Barbershop & Grooming · Cape Town",
+    title: "TEST BEAUTY STUDIO WEBSITE",
     description:
-      "Traditional barbershop craft. Cuts, shaves, and the ritual you deserve.",
+      "Test beauty studio website — cuts, styling, and booking.",
     url: "https://marineflow.co.za",
-    siteName: "MarineFlow",
+    siteName: "TEST BEAUTY STUDIO WEBSITE",
     locale: "en_ZA",
     type: "website",
   },

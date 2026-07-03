@@ -7,6 +7,7 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 import type { Group } from "three";
 import { usePrefersReducedMotion } from "@/lib/usePrefersReducedMotion";
 import { useScrollTriggerRefresh } from "@/lib/useScrollTriggerRefresh";
+import { ScrambleReveal } from "@/components/ScrambleReveal";
 import { HeroCanvasFallback } from "./HeroCanvasFallback";
 
 const BarberPoleCanvas = dynamic(
@@ -117,10 +118,18 @@ export function HeroBarberPole3D() {
                 Est. 1924 · Cape Town
               </p>
 
-              <h1 className="font-serif text-4xl font-semibold leading-[1.05] tracking-tight text-cream sm:text-5xl lg:text-6xl xl:text-7xl">
-                Where tradition
+              <h1
+                aria-label="Where tradition meets the chair"
+                className="font-serif text-4xl font-semibold leading-[1.05] tracking-tight text-cream sm:text-5xl lg:text-6xl xl:text-7xl"
+              >
+                <ScrambleReveal as="span" nested text="Where tradition" />
                 <br />
-                <span className="text-accent">meets the chair</span>
+                <ScrambleReveal
+                  as="span"
+                  nested
+                  text="meets the chair"
+                  className="text-accent"
+                />
               </h1>
 
               <p className="mt-6 max-w-md font-grotesk text-lg leading-relaxed text-cream/70 sm:text-xl">
