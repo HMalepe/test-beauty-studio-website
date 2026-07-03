@@ -3,7 +3,7 @@
 import { useRef } from "react";
 import { useReducedMotion, useScroll, useTransform } from "framer-motion";
 import { useScrollTriggerRefresh } from "@/lib/useScrollTriggerRefresh";
-import { ScrambleReveal } from "@/components/ScrambleReveal";
+import { ScrambleReveal } from "@/clients/beauty-studio/components/ScrambleReveal";
 import { PolaroidCard } from "./PolaroidCard";
 import {
   FAN_OUT_VH,

@@ -8,7 +8,7 @@ import {
   type MouseEvent,
 } from "react";
 import { useReducedMotion } from "framer-motion";
-import { ScrambleReveal } from "@/components/ScrambleReveal";
+import { ScrambleReveal } from "@/clients/beauty-studio/components/ScrambleReveal";
 import { MagneticServiceCard } from "./MagneticServiceCard";
 import {
   CARD_GAP,

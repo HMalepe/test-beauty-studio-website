@@ -1,0 +1,37 @@
+---
+description: Multi-tenant isolation — never mix client content; only share platform infrastructure
+alwaysApply: true
+---
+
+# Multi-tenant client isolation
+
+## Hard rules
+
+1. **Never edit a client folder's unique content or layout** unless the task explicitly targets that client.
+2. **Only extract code that is genuinely identical** across two or more clients into `src/platform/`.
+3. **Client-specific UI, copy, theme, and routes** live under `src/clients/{slug}/` and `src/app/(sites)/{slug}/` — not in `src/platform/` or root `src/components/`.
+4. **Do not import** from one client's folder into another client's folder.
+5. **Root `app/layout.tsx`** is platform-only (HTML shell, providers, fonts). Per-client `layout.tsx` belongs in `app/(sites)/{slug}/layout.tsx`.
+
+## Where things go
+
+| Path | Purpose |
+|------|---------|
+| `src/middleware.ts` | Subdomain routing |
+| `src/lib/tenants/` | Registry, host resolution |
+| `src/platform/` | Identical cross-tenant UI/utilities only (e.g. scaffold placeholder, unknown-tenant page) |
+| `src/app/(marketing)/` | marineflow.co.za portfolio |
+| `src/app/(sites)/{slug}/` | Thin Next.js route adapters per client |
+| `src/clients/{slug}/` | Portable client module (components, content, theme, `site.config.ts`) |
+
+## Onboarding a new client
+
+1. Add slug to `src/lib/tenants/registry.ts`
+2. Create `src/app/(sites)/{slug}/page.tsx` (and `layout.tsx` when needed)
+3. Create `src/clients/{slug}/` module — do not copy another client's components
+
+## Forbidden
+
+- Shared `Header`, `Hero`, or section components used by all clients by default
+- Putting client branding in root `layout.tsx` metadata
+- Refactoring Client A's folder while working on Client B

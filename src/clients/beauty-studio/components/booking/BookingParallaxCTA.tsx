@@ -7,7 +7,7 @@ import {
   useTransform,
   type MotionValue,
 } from "framer-motion";
-import { ScrambleReveal } from "@/components/ScrambleReveal";
+import { ScrambleReveal } from "@/clients/beauty-studio/components/ScrambleReveal";
 import { usePrefersReducedMotion } from "@/lib/usePrefersReducedMotion";
 import { useScrollTriggerRefresh } from "@/lib/useScrollTriggerRefresh";
 

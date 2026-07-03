@@ -4,16 +4,15 @@ import { Providers } from "./providers";
 import "./globals.css";
 
 export const metadata: Metadata = {
-  title: "TEST BEAUTY STUDIO WEBSITE",
+  title: "MarineFlow — Client Portfolio Platform",
   description:
-    "Test beauty studio website — editorial grooming experience with 3D hero, polaroid gallery, magnetic services, and parallax booking CTA.",
+    "MarineFlow hosts independent client sites on marineflow.co.za subdomains.",
   metadataBase: new URL("https://marineflow.co.za"),
   openGraph: {
-    title: "TEST BEAUTY STUDIO WEBSITE",
-    description:
-      "Test beauty studio website — cuts, styling, and booking.",
+    title: "MarineFlow — Client Portfolio Platform",
+    description: "Portfolio and client sites by MarineFlow.",
     url: "https://marineflow.co.za",
-    siteName: "TEST BEAUTY STUDIO WEBSITE",
+    siteName: "MarineFlow",
     locale: "en_ZA",
     type: "website",
   },

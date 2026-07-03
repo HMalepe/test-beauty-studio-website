@@ -7,7 +7,7 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 import type { Group } from "three";
 import { usePrefersReducedMotion } from "@/lib/usePrefersReducedMotion";
 import { useScrollTriggerRefresh } from "@/lib/useScrollTriggerRefresh";
-import { ScrambleReveal } from "@/components/ScrambleReveal";
+import { ScrambleReveal } from "@/clients/beauty-studio/components/ScrambleReveal";
 import { HeroCanvasFallback } from "./HeroCanvasFallback";
 
 const BarberPoleCanvas = dynamic(
