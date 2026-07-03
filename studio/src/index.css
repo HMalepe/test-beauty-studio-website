@@ -1,0 +1,55 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    @apply antialiased;
+  }
+
+  body {
+    @apply bg-paper font-sans text-ink;
+    font-size: 16px;
+    overflow-x: clip;
+  }
+
+  ::selection {
+    @apply bg-lime text-ink;
+  }
+
+  a {
+    @apply transition-colors duration-200;
+  }
+}
+
+@layer components {
+  .section-eyebrow {
+    @apply text-xs font-semibold uppercase tracking-[0.2em] text-coral;
+  }
+
+  .section-copy {
+    @apply max-w-lg text-base leading-relaxed text-ink/65;
+  }
+
+  .btn-primary {
+    @apply inline-flex items-center justify-center rounded-full bg-ink px-6 py-3 text-sm font-semibold text-paper transition hover:bg-ink/85;
+  }
+
+  .btn-ghost {
+    @apply inline-flex items-center justify-center rounded-full border border-ink/15 px-6 py-3 text-sm font-semibold text-ink transition hover:border-ink/30 hover:bg-offwhite/60;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
