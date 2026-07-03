@@ -19,7 +19,7 @@ function LogoMark() {
         fontWeight="700"
         letterSpacing="-0.02em"
       >
-        Studio
+        Tinker
       </text>
     </svg>
   )
@@ -35,15 +35,12 @@ export function Nav() {
         <a
           href="#"
           className="flex items-center rounded-full px-3 py-2 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ink"
-          aria-label="Studio home"
+          aria-label="Tinker home"
         >
           <LogoMark />
         </a>
 
-        <a
-          href="#"
-          className="inline-flex shrink-0 items-center justify-center rounded-full bg-lime px-5 py-2.5 text-sm font-bold text-ink transition-[transform,filter] duration-200 hover:scale-[1.03] hover:brightness-105 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ink"
-        >
+        <a href="#learn" className="btn-lime shrink-0 px-5 py-2.5">
           Get the app
         </a>
       </nav>

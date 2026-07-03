@@ -51,10 +51,7 @@ export function InTheWild() {
             <p>See what people are making IRL.</p>
             <p>Ideas become projects right on your phone.</p>
           </div>
-          <a
-            href="#"
-            className="mt-8 inline-flex items-center justify-center rounded-full bg-lime px-6 py-3 text-sm font-bold text-ink transition hover:scale-[1.03] hover:brightness-105"
-          >
+          <a href="#learn" className="btn-lime mt-8">
             Get the app
           </a>
         </header>

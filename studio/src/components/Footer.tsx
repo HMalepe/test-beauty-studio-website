@@ -1,31 +1,39 @@
+const FOOTER_LINKS = [
+  { href: '#tools', label: 'Tools' },
+  { href: '#wild', label: 'In the wild' },
+  { href: '#learn', label: 'Learn' },
+  { href: '#faq', label: 'FAQ' },
+] as const
+
 export function Footer() {
   return (
-    <footer className="border-t border-offwhite py-14">
-      <div className="mx-auto flex max-w-6xl flex-col gap-8 px-6 sm:flex-row sm:items-end sm:justify-between">
+    <footer className="border-t border-neutral-200 bg-paper py-14">
+      <div className="mx-auto flex max-w-6xl flex-col gap-10 px-6 sm:flex-row sm:items-end sm:justify-between">
         <div>
-          <p className="flex items-center gap-2 text-sm font-bold">
+          <p className="flex items-center gap-2 text-sm font-bold text-ink">
             <span className="inline-block size-2 rounded-full bg-lime" aria-hidden />
-            Studio
+            Tinker
           </p>
-          <p className="mt-3 max-w-xs text-sm leading-relaxed text-ink/50">
-            Motion-first landing scaffold. Built with Vite, React, and Tailwind.
+          <p className="mt-3 max-w-xs text-sm leading-relaxed text-neutral-600">
+            Everyone can play with AI. Make videos, images, 3D models, and more —
+            free on your phone.
           </p>
         </div>
 
-        <div className="flex flex-wrap gap-6 text-sm text-ink/60">
-          <a href="#tools" className="hover:text-ink">
-            Tools
-          </a>
-          <a href="#wild" className="hover:text-ink">
-            Showcase
-          </a>
-          <a href="#faq" className="hover:text-ink">
-            FAQ
-          </a>
-        </div>
+        <nav aria-label="Footer">
+          <ul className="flex flex-wrap gap-6 text-sm text-neutral-600">
+            {FOOTER_LINKS.map((link) => (
+              <li key={link.href}>
+                <a href={link.href} className="hover:text-ink">
+                  {link.label}
+                </a>
+              </li>
+            ))}
+          </ul>
+        </nav>
 
-        <p className="text-sm text-ink/40">
-          &copy; {new Date().getFullYear()}
+        <p className="text-sm text-neutral-400">
+          &copy; {new Date().getFullYear()} Tinker
         </p>
       </div>
     </footer>

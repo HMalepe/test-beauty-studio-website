@@ -35,6 +35,12 @@ export default {
           letterSpacing: '-0.04em',
           fontWeight: '800',
         },
+        '.text-play': {
+          fontSize: 'clamp(4rem, 15vw, 10rem)',
+          lineHeight: '0.9',
+          letterSpacing: '-0.04em',
+          fontWeight: '800',
+        },
       })
     }),
   ],
