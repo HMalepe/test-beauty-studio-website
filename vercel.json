@@ -1,9 +1,3 @@
 {
-  "buildCommand": "npm run build:all",
-  "rewrites": [
-    {
-      "source": "/__tinker__/((?!assets/).*)",
-      "destination": "/__tinker__/index.html"
-    }
-  ]
+  "buildCommand": "npm run build:all"
 }
