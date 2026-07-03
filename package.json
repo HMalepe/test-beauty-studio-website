@@ -4,7 +4,11 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
+    "dev:studio": "npm run dev --prefix studio",
     "build": "next build",
+    "build:studio": "npm run build --prefix studio",
+    "copy:studio": "node scripts/copy-studio-build.mjs",
+    "build:all": "npm run build:studio && npm run copy:studio && next build",
     "start": "next start",
     "lint": "next lint"
   },

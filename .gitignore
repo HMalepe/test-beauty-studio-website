@@ -19,6 +19,7 @@ studio/dist
 
 # production
 /build
+/public/__tinker__
 
 # misc
 .DS_Store

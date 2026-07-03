@@ -10,6 +10,8 @@ export default function MarketingHomePage() {
       <p className="mt-4 max-w-md font-grotesk text-cream/60">
         Client sites are served on their own subdomains — e.g.{" "}
         <span className="text-cream/80">beauty-studio.marineflow.co.za</span>
+        {" · "}
+        <span className="text-cream/80">tinker.marineflow.co.za</span>
       </p>
     </main>
   );
