@@ -67,9 +67,11 @@ export function InTheWild() {
             <p>See what people are making IRL.</p>
             <p>Ideas become projects right on your phone.</p>
           </div>
-          <a href="#learn" className="btn-lime mt-8">
-            Get the app
-          </a>
+          <div className="mt-8">
+            <a href="#learn" className="btn-lime">
+              Get the app
+            </a>
+          </div>
         </header>
 
         <div className="mt-16 grid grid-cols-1 gap-6 md:grid-cols-2">

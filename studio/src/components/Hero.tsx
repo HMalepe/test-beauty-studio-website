@@ -1,7 +1,7 @@
 import { useLayoutEffect, useRef, type ReactNode } from 'react'
 import { DESK_BG } from '../lib/assets'
 import { gsap } from '../lib/gsap'
-import { refreshScrollTriggers } from '../lib/scrollTriggerLifecycle'
+import { prefersNativeScroll } from '../lib/scrollConfig'
 import { usePrefersReducedMotion } from '../providers/SmoothScroll'
 
 function AppleIcon() {
@@ -60,7 +60,7 @@ function StoreButton({ href, icon, lineOne, lineTwo }: StoreButtonProps) {
   return (
     <a
       href={href}
-      className="inline-flex items-center gap-3 rounded-full bg-[#111111] px-5 py-3 text-paper transition hover:bg-[#1a1a1a]"
+      className="inline-flex items-center gap-3 rounded-full bg-[#111111] px-5 py-3 text-paper transition-colors hover:bg-[#1a1a1a]"
     >
       {icon}
       <span className="flex flex-col items-start leading-tight">
@@ -101,6 +101,7 @@ function PhoneMockup() {
 const HEADLINE = 'Follow your spark'
 
 export function Hero() {
+  const sectionRef = useRef<HTMLElement>(null)
   const wordRefs = useRef<HTMLSpanElement[]>([])
   const subheadingRef = useRef<HTMLDivElement>(null)
   const buttonsRef = useRef<HTMLDivElement>(null)
@@ -108,49 +109,62 @@ export function Hero() {
   const reducedMotion = usePrefersReducedMotion()
 
   useLayoutEffect(() => {
+    const section = sectionRef.current
     const words = wordRefs.current.filter(Boolean)
     const subheading = subheadingRef.current
     const buttons = buttonsRef.current
     const phone = phoneRef.current
 
-    if (!words.length || !subheading || !buttons || !phone) return
+    if (!section || !words.length || !subheading || !buttons || !phone) return
 
     if (reducedMotion) {
-      gsap.set([words, subheading, buttons, phone], {
-        opacity: 1,
-        y: 0,
-      })
+      gsap.set([words, subheading, buttons, phone], { opacity: 1, y: 0 })
       return
     }
 
+    const mobile = prefersNativeScroll()
+    const yOffset = mobile ? 20 : 36
+
     gsap.set([words, subheading, buttons, phone], {
       opacity: 0,
-      y: window.matchMedia('(max-width: 767px)').matches ? 24 : 36,
+      y: yOffset,
+      force3D: true,
     })
 
     const ctx = gsap.context(() => {
-      const tl = gsap.timeline({ defaults: { ease: 'power3.out' } })
+      const tl = gsap.timeline({
+        defaults: { ease: 'power3.out', force3D: true },
+        delay: 0.15,
+      })
 
       tl.to(words, {
         opacity: 1,
         y: 0,
-        duration: 0.65,
-        stagger: 0.08,
+        duration: mobile ? 0.5 : 0.65,
+        stagger: mobile ? 0.06 : 0.08,
       })
-        .to(subheading, { opacity: 1, y: 0, duration: 0.5 }, '-=0.35')
-        .to(buttons, { opacity: 1, y: 0, duration: 0.55 }, '-=0.25')
-        .to(phone, { opacity: 1, y: 0, duration: 0.65 }, '-=0.2')
-    })
+        .to(
+          subheading,
+          { opacity: 1, y: 0, duration: mobile ? 0.4 : 0.5 },
+          '-=0.3',
+        )
+        .to(
+          buttons,
+          { opacity: 1, y: 0, duration: mobile ? 0.45 : 0.55 },
+          '-=0.2',
+        )
+        .to(
+          phone,
+          { opacity: 1, y: 0, duration: mobile ? 0.55 : 0.65 },
+          '-=0.15',
+        )
+    }, section)
 
     return () => ctx.revert()
   }, [reducedMotion])
 
-  useLayoutEffect(() => {
-    requestAnimationFrame(() => refreshScrollTriggers())
-  }, [])
-
   return (
-    <section className="relative min-h-screen bg-paper pt-[140px]">
+    <section ref={sectionRef} className="relative min-h-screen bg-paper pt-[140px]">
       <div className="mx-auto flex max-w-[min(96vw,1400px)] flex-col items-center px-6 text-center">
         <h1 className="sr-only">{HEADLINE}</h1>
 

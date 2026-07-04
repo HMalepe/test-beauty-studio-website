@@ -14,9 +14,11 @@ export function Footer() {
           <p className="mt-6 text-lg text-neutral-800">
             See where it takes you.
           </p>
-          <a href="#learn" className="btn-lime mt-8">
-            Get the app
-          </a>
+          <div className="mt-8">
+            <a href="#learn" className="btn-lime">
+              Get the app
+            </a>
+          </div>
         </div>
       </section>
 

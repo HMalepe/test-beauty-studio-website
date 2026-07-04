@@ -100,7 +100,7 @@ export function PlayToLearn() {
         ref={ringRef}
         src="/play/gold-ring.svg"
         alt=""
-        className="play-ring pointer-events-none absolute left-1/2 top-0 z-30 w-[min(70vw,280px)] max-w-full -translate-x-1/2 sm:left-[58%] sm:w-[min(52vw,360px)]"
+        className="play-ring pointer-events-none absolute left-1/2 top-0 z-30 w-[min(70vw,280px)] max-w-full -translate-x-1/2 will-change-transform sm:left-[58%] sm:w-[min(52vw,360px)] motion-reduce:will-change-auto"
         loading="lazy"
         decoding="async"
         aria-hidden
@@ -123,7 +123,7 @@ export function PlayToLearn() {
 
         <div
           ref={phoneRef}
-          className="play-phone relative mx-auto mt-8 w-full max-w-[min(88vw,380px)] sm:mt-0 sm:max-w-[min(92vw,420px)]"
+          className="play-phone relative mx-auto mt-8 w-full max-w-[min(88vw,380px)] will-change-transform sm:mt-0 sm:max-w-[min(92vw,420px)] motion-reduce:will-change-auto"
         >
           <div className="relative overflow-hidden rounded-[2.25rem] border-[9px] border-ink bg-ink shadow-[0_40px_100px_-30px_rgba(0,0,0,0.45)]">
             <div className="absolute left-1/2 top-2.5 z-10 h-4 w-20 -translate-x-1/2 rounded-full bg-ink" />

@@ -7,9 +7,6 @@ type LazyVideoProps = {
   posterClassName?: string
 }
 
-/**
- * Defers video network load until near the viewport; pauses when off-screen.
- */
 export function LazyVideo({
   src,
   poster,
@@ -23,19 +20,16 @@ export function LazyVideo({
 
   useEffect(() => {
     const root = rootRef.current
-    const video = videoRef.current
-    if (!root || !video) return
+    if (!root) return
 
     const observer = new IntersectionObserver(
       ([entry]) => {
         if (entry.isIntersecting) {
           setShouldLoad(true)
-          video.play().catch(() => {})
-        } else {
-          video.pause()
+          observer.unobserve(root)
         }
       },
-      { rootMargin: '120px', threshold: 0.15 },
+      { rootMargin: '200px', threshold: 0.01 },
     )
 
     observer.observe(root)
@@ -43,18 +37,33 @@ export function LazyVideo({
   }, [])
 
   useEffect(() => {
-    if (!shouldLoad) return
+    const root = rootRef.current
     const video = videoRef.current
-    if (!video) return
+    if (!root || !video || !shouldLoad) return
+
     video.load()
-    video.play().catch(() => {})
+
+    const playObserver = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          video.play().catch(() => {})
+        } else {
+          video.pause()
+        }
+      },
+      { threshold: 0.1 },
+    )
+
+    playObserver.observe(root)
+    return () => playObserver.disconnect()
   }, [shouldLoad])
 
   return (
     <div ref={rootRef} className="absolute inset-0">
       <video
         ref={videoRef}
-        className={`transition-opacity duration-300 ${videoReady ? 'opacity-100' : 'opacity-0'} ${className}`}
+        className={`transition-opacity duration-500 ${videoReady ? 'opacity-100' : 'opacity-0'} ${className}`}
+        style={{ zIndex: 1 }}
         poster={poster}
         muted
         loop
@@ -69,7 +78,8 @@ export function LazyVideo({
       <img
         src={poster}
         alt=""
-        className={`transition-opacity duration-300 ${videoReady ? 'opacity-0' : 'opacity-100'} ${posterClassName}`}
+        className={`transition-opacity duration-500 ${videoReady ? 'opacity-0' : 'opacity-100'} ${posterClassName}`}
+        style={{ zIndex: 0 }}
         loading="lazy"
         decoding="async"
         aria-hidden

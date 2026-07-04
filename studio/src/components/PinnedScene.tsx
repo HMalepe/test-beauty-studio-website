@@ -230,6 +230,9 @@ export function PinnedScene() {
           } as gsap.TweenVars,
           3.5,
         )
+
+      // Phase 5: hold the final state so user can appreciate it before scrolling past
+      tl.to({}, { duration: 1 }, 4.2)
     }, root)
 
     requestAnimationFrame(() => refreshScrollTriggers())

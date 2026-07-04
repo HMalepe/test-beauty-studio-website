@@ -71,9 +71,11 @@ export function ToolsGrid() {
             <p>Make videos, images, 3D models, comics,</p>
             <p>or anything else you dream up.</p>
           </div>
-          <a href="#learn" className="btn-lime mt-8">
-            Get the app
-          </a>
+          <div className="mt-8">
+            <a href="#learn" className="btn-lime">
+              Get the app
+            </a>
+          </div>
         </header>
 
         <div className="mt-16 grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-4 lg:auto-rows-[minmax(140px,1fr)]">

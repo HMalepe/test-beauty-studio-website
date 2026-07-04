@@ -4,7 +4,7 @@ import { LazyVideo } from './LazyVideo'
 export function VideoCreatorCard({ card }: { card: VideoShowcaseCard }) {
   return (
     <article
-      className={`wild-card group relative overflow-hidden rounded-2xl bg-ink transition duration-300 hover:-translate-y-1 hover:shadow-[0_28px_70px_-24px_rgba(0,0,0,0.35)] motion-reduce:transition-none motion-reduce:hover:translate-y-0 ${card.minHeight}`}
+      className={`wild-card group relative overflow-hidden rounded-2xl bg-ink transition duration-300 motion-reduce:transition-none md:hover:-translate-y-1 md:hover:shadow-[0_28px_70px_-24px_rgba(0,0,0,0.35)] ${card.minHeight}`}
     >
       <LazyVideo src={card.video} poster={card.poster} />
 
@@ -13,9 +13,9 @@ export function VideoCreatorCard({ card }: { card: VideoShowcaseCard }) {
         aria-hidden
       />
 
-      <div className="absolute bottom-0 left-0 p-6 text-paper">
-        <p className="text-2xl font-bold leading-tight">{card.name}</p>
-        <p className="text-2xl font-bold leading-tight text-paper/95">
+      <div className="absolute bottom-0 left-0 p-5 text-paper sm:p-6">
+        <p className="text-xl font-bold leading-tight sm:text-2xl">{card.name}</p>
+        <p className="text-xl font-bold leading-tight text-paper/95 sm:text-2xl">
           {card.subtitle}
         </p>
       </div>
@@ -26,30 +26,30 @@ export function VideoCreatorCard({ card }: { card: VideoShowcaseCard }) {
 export function BeforeAfterCard({ card }: { card: BeforeAfterShowcaseCard }) {
   return (
     <article
-      className={`wild-card group overflow-hidden rounded-2xl bg-offwhite transition duration-300 hover:-translate-y-1 hover:shadow-[0_28px_70px_-24px_rgba(0,0,0,0.25)] motion-reduce:transition-none motion-reduce:hover:translate-y-0 ${card.minHeight}`}
+      className={`wild-card group overflow-hidden rounded-2xl bg-offwhite transition duration-300 motion-reduce:transition-none md:hover:-translate-y-1 md:hover:shadow-[0_28px_70px_-24px_rgba(0,0,0,0.25)] ${card.minHeight}`}
     >
       <div className="grid h-full min-h-[inherit] grid-cols-2">
-        <div className="relative h-full min-h-[inherit]">
+        <div className="relative min-h-[inherit]">
           <img
             src={card.before}
             alt={`${card.alt} — before`}
-            className="h-full w-full object-cover"
+            className="absolute inset-0 h-full w-full object-cover"
             loading="lazy"
             decoding="async"
           />
-          <span className="absolute bottom-3 left-3 rounded-full bg-black/60 px-3 py-1 text-sm text-paper">
+          <span className="absolute bottom-3 left-3 z-10 rounded-full bg-black/60 px-3 py-1 text-sm text-paper backdrop-blur-sm">
             Before
           </span>
         </div>
-        <div className="relative h-full min-h-[inherit]">
+        <div className="relative min-h-[inherit]">
           <img
             src={card.after}
             alt={`${card.alt} — after`}
-            className="h-full w-full object-cover"
+            className="absolute inset-0 h-full w-full object-cover"
             loading="lazy"
             decoding="async"
           />
-          <span className="absolute bottom-3 right-3 rounded-full bg-black/60 px-3 py-1 text-sm text-paper">
+          <span className="absolute bottom-3 right-3 z-10 rounded-full bg-black/60 px-3 py-1 text-sm text-paper backdrop-blur-sm">
             After
           </span>
         </div>
