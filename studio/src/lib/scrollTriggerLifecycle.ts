@@ -10,39 +10,19 @@ function debounce<T extends (...args: never[]) => void>(fn: T, ms: number) {
 
 let teardown: (() => void) | undefined
 
-/** Global resize / load / font listeners so all ScrollTriggers stay in sync. */
 export function bindScrollTriggerLifecycle() {
   if (typeof window === 'undefined' || teardown) return teardown ?? (() => {})
 
-  const refresh = () => ScrollTrigger.refresh()
-  const onResize = debounce(refresh, 150)
-  const onOrientation = debounce(refresh, 250)
+  const refresh = debounce(() => ScrollTrigger.refresh(), 300)
 
-  window.addEventListener('resize', onResize)
-  window.addEventListener('orientationchange', onOrientation)
-  window.addEventListener('load', refresh)
+  window.addEventListener('resize', refresh)
+  window.addEventListener('orientationchange', refresh)
 
-  window.visualViewport?.addEventListener('resize', onResize)
-
-  document.fonts?.ready.then(refresh).catch(() => {})
-
-  const onImageLoad = (event: Event) => {
-    if (event.target instanceof HTMLImageElement) refresh()
-  }
-
-  document.addEventListener('load', onImageLoad, true)
-
-  // Allow layout + child ScrollTriggers to register before first refresh.
-  requestAnimationFrame(() => {
-    requestAnimationFrame(refresh)
-  })
+  document.fonts?.ready.then(() => ScrollTrigger.refresh()).catch(() => {})
 
   teardown = () => {
-    window.removeEventListener('resize', onResize)
-    window.removeEventListener('orientationchange', onOrientation)
-    window.removeEventListener('load', refresh)
-    window.visualViewport?.removeEventListener('resize', onResize)
-    document.removeEventListener('load', onImageLoad, true)
+    window.removeEventListener('resize', refresh)
+    window.removeEventListener('orientationchange', refresh)
     teardown = undefined
   }
 

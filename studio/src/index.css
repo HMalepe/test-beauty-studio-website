@@ -5,38 +5,18 @@
 @layer base {
   html {
     @apply antialiased;
-    overflow-x: clip;
-    height: auto;
-  }
-
-  html:not([data-reduced-motion]):not([data-lenis-active]) {
-    scroll-behavior: smooth;
-  }
-
-  html[data-lenis-active] {
-    height: auto;
-  }
-
-  html[data-lenis-active] body {
-    height: auto;
-    overflow: hidden;
-  }
-
-  html[data-scroll-mode='native'] {
-    overflow-y: auto;
-    -webkit-overflow-scrolling: touch;
+    overflow-x: hidden;
   }
 
   body {
     @apply bg-paper font-sans text-ink;
     font-size: 16px;
-    overflow-x: clip;
-    min-height: 100%;
+    overflow-x: hidden;
   }
 
   #root {
     width: 100%;
-    overflow-x: clip;
+    overflow-x: hidden;
   }
 
   ::selection {
@@ -71,7 +51,7 @@
   }
 
   .btn-lime {
-    @apply inline-flex items-center justify-center rounded-full bg-lime px-6 py-3 text-sm font-bold text-ink transition hover:scale-[1.03] hover:brightness-105 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ink motion-reduce:hover:scale-100;
+    @apply inline-flex items-center justify-center rounded-full bg-lime px-6 py-3 text-sm font-bold text-ink transition focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ink;
   }
 
   .text-on-coral {
@@ -80,17 +60,6 @@
 
   .text-on-lime {
     @apply text-ink;
-  }
-}
-
-/* Pinned section: contain paint on mobile to reduce scroll jank */
-@media (pointer: coarse) {
-  .pinned-track {
-    contain: layout style;
-  }
-
-  .pin-target {
-    transform: translateZ(0);
   }
 }
 
